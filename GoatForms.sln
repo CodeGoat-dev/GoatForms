@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoatForms", "GoatForms.csproj", "{53E6B318-DD8B-4F2C-A449-5ABB807BDFEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53E6B318-DD8B-4F2C-A449-5ABB807BDFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E6B318-DD8B-4F2C-A449-5ABB807BDFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E6B318-DD8B-4F2C-A449-5ABB807BDFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E6B318-DD8B-4F2C-A449-5ABB807BDFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {836031D0-801D-482B-B291-D9E7E442BE92}
+	EndGlobalSection
+EndGlobal
