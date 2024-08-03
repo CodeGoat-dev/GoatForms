@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -22,6 +23,11 @@ namespace GoatForms
         /// <returns><c>true</c> if the mutex was created and is the only instance; <c>false</c> otherwise.</returns>
         public static bool CreateMutex(string mutexName)
         {
+            if (mutexName == null)
+            {
+                throw new ArgumentNullException(nameof(mutexName));
+            }
+
             bool isNew;
             _mutex = new Mutex(true, mutexName, out isNew);
             return isNew;
@@ -48,10 +54,16 @@ namespace GoatForms
         /// <summary>
         /// Gets the path for storing application data.
         /// </summary>
+        /// <param name="appName">Your application's name or the relative path to application data.</param>
         /// <returns>The path for application data.</returns>
-        public static string GetAppDataPath()
+        public static string GetAppDataPath(string appName = null)
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GoatForms");
+            if (appName == null)
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
         }
 
         /// <summary>
@@ -61,6 +73,16 @@ namespace GoatForms
         /// <param name="logFilePath">The path to the log file.</param>
         public static void LogMessage(string message, string logFilePath)
         {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            if (logFilePath == null)
+            {
+                throw new ArgumentNullException(nameof(logFilePath));
+            }
+
             File.AppendAllText(logFilePath, $"{DateTime.Now}: {message}{Environment.NewLine}");
         }
 
@@ -71,7 +93,79 @@ namespace GoatForms
         /// <param name="logFilePath">The path to the log file.</param>
         public static void LogError(Exception exception, string logFilePath)
         {
+            if (exception == null)
+            {
+                throw new ArgumentNullException(nameof(exception));
+            }
+
+            if (logFilePath == null)
+            {
+                throw new ArgumentNullException(nameof(logFilePath));
+            }
+
             File.AppendAllText(logFilePath, $"{DateTime.Now}: ERROR - {exception.Message}{Environment.NewLine}{exception.StackTrace}{Environment.NewLine}");
+        }
+
+        /// <summary>
+        /// Logs an informational message to the event log.
+        /// </summary>
+        /// <param name="source">The source of the event log entry.</param>
+        /// <param name="message">The informational message to log.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the event log source cannot be created or accessed.</exception>
+        public static void LogInformation(string source, string message)
+        {
+            WriteToEventLog(source, message, EventLogEntryType.Information);
+        }
+
+        /// <summary>
+        /// Logs a warning message to the event log.
+        /// </summary>
+        /// <param name="source">The source of the event log entry.</param>
+        /// <param name="message">The warning message to log.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the event log source cannot be created or accessed.</exception>
+        public static void LogWarning(string source, string message)
+        {
+            WriteToEventLog(source, message, EventLogEntryType.Warning);
+        }
+
+        /// <summary>
+        /// Logs an error message to the event log.
+        /// </summary>
+        /// <param name="source">The source of the event log entry.</param>
+        /// <param name="message">The error message to log.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the event log source cannot be created or accessed.</exception>
+        public static void LogError(string source, string message)
+        {
+            WriteToEventLog(source, message, EventLogEntryType.Error);
+        }
+
+        /// <summary>
+        /// Writes a message to the event log with the specified entry type.
+        /// </summary>
+        /// <param name="source">The source of the event log entry.</param>
+        /// <param name="message">The message to log.</param>
+        /// <param name="type">The type of the event log entry (Information, Warning, Error).</param>
+        /// <exception cref="InvalidOperationException">Thrown when the event log source cannot be created or accessed.</exception>
+        private static void WriteToEventLog(string source, string message, EventLogEntryType type)
+        {
+            try
+            {
+                if (!EventLog.SourceExists(source))
+                {
+                    EventLog.CreateEventSource(source, "Application");
+                }
+
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = source;
+                    eventLog.WriteEntry(message, type);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Throw an InvalidOperationException with the error details
+                throw new InvalidOperationException($"Failed to write to event log: {ex.Message}", ex);
+            }
         }
 
         /// <summary>
