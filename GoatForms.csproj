@@ -15,7 +15,9 @@
     <Copyright>Copyright © 2024 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.1.2</AssemblyVersion>
+    <FileVersion>1.0.1.2</FileVersion>
+    <Version>1.0.1</Version>
     <PackageTags>Windows Forms</PackageTags>
     <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>

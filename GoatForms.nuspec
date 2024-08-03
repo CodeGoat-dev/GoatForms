@@ -11,7 +11,7 @@
     <icon>icon.png</icon>
     <projectUrl>https://github.com/CodeGoat-dev/GoatForms/</projectUrl>
     <description>$description$</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Added XML document manipulation methods to AppUtils.</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>Windows Forms Class Library</tags>
   </metadata>
