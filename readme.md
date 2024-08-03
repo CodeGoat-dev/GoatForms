@@ -2,7 +2,7 @@
 
 ## Overview
 
-GoatForms is a lightweight and intuitive library designed to simplify the creation and management of Windows Forms applications for visually impared developers. It was developed to streamline the process of form creation, control management, and layout handling, making it easier for developers to build robust Windows Forms applications with minimal effort.
+GoatForms is a lightweight and intuitive library designed to simplify the creation and management of Windows Forms applications for visually impaired developers. It was developed to streamline the process of form creation, control management, and layout handling, making it easier for developers to build robust Windows Forms applications with minimal effort.
 
 ## Features
 
