@@ -5,7 +5,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>GoatForms</RootNamespace>
     <AssemblyName>GoatForms</AssemblyName>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
@@ -21,7 +22,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Update="README.md">
+    <None Update="LICENSE">
+      <Pack>true</Pack>
+      <PackagePath />
+    </None>
+    <None Update="readme.md">
       <Pack>true</Pack>
       <PackagePath />
     </None>
