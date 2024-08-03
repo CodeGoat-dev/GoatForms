@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 using Microsoft.Win32;
 
 namespace GoatForms
@@ -222,6 +224,81 @@ namespace GoatForms
             {
                 return key?.GetValue(valueName) != null;
             }
+        }
+
+        /// <summary>
+        /// Loads an XML document from a file.
+        /// </summary>
+        /// <param name="filePath">The path to the XML file.</param>
+        /// <returns>The loaded XDocument.</returns>
+        public static XDocument LoadXml(string filePath)
+        {
+            return XDocument.Load(filePath);
+        }
+
+        /// <summary>
+        /// Saves an XDocument to a file.
+        /// </summary>
+        /// <param name="document">The XDocument to save.</param>
+        /// <param name="filePath">The path to save the XML file.</param>
+        public static void SaveXml(XDocument document, string filePath)
+        {
+            document.Save(filePath);
+        }
+
+        /// <summary>
+        /// Adds a new element to the XML document.
+        /// </summary>
+        /// <param name="document">The XDocument to modify.</param>
+        /// <param name="parentElement">The name of the parent element to add the new element under.</param>
+        /// <param name="newElement">The XElement to add.</param>
+        public static void AddElement(XDocument document, string parentElement, XElement newElement)
+        {
+            var parent = document.Root.Element(parentElement);
+            if (parent != null)
+            {
+                parent.Add(newElement);
+            }
+        }
+
+        /// <summary>
+        /// Removes an element from the XML document.
+        /// </summary>
+        /// <param name="document">The XDocument to modify.</param>
+        /// <param name="elementName">The name of the element to remove.</param>
+        public static void RemoveElement(XDocument document, string elementName)
+        {
+            var element = document.Root.Element(elementName);
+            if (element != null)
+            {
+                element.Remove();
+            }
+        }
+
+        /// <summary>
+        /// Updates the value of an existing element in the XML document.
+        /// </summary>
+        /// <param name="document">The XDocument to modify.</param>
+        /// <param name="elementName">The name of the element to update.</param>
+        /// <param name="newValue">The new value to set.</param>
+        public static void UpdateElement(XDocument document, string elementName, string newValue)
+        {
+            var element = document.Root.Element(elementName);
+            if (element != null)
+            {
+                element.Value = newValue;
+            }
+        }
+
+        /// <summary>
+        /// Finds an element by name and returns it.
+        /// </summary>
+        /// <param name="document">The XDocument to search.</param>
+        /// <param name="elementName">The name of the element to find.</param>
+        /// <returns>The found XElement or null if not found.</returns>
+        public static XElement FindElement(XDocument document, string elementName)
+        {
+            return document.Root.Element(elementName);
         }
     }
 }
