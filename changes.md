@@ -4,13 +4,17 @@ This document outlines the changes made between versions of the GoatForms librar
 
 ## V1.0.2
 
-## New Features
+### New Features
 
 New methods have been added to the `AppUtils` class to facilitate event logging.
 
-## Updated Features
+### Updated Features
 
 The `GetAppDataPath()` method in the `AppUtils` class now takes your application name or relative path to your application data directory as an argument.
+
+### Improvements
+
+Exception handling has been improved in the `AppUtils` class.
 
 ##V1.0.1
 
