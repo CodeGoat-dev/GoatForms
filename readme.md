@@ -78,6 +78,26 @@ ToolStripMenuItem trayHideMenuItem = ControlFactory.AddSystemTrayContextMenuItem
 
 The library ensures that the tray icon and its associated resources are properly managed and disposed of when the form is closed.
 
+### App Utilities
+
+#### Mutex Management
+
+Create or release a named mutex:
+
+```csharp
+AppUtils.CreateMutex("myMutexName");
+AppUtils.ReleaseMutex("myMutexName");
+```
+
+#### Registry Management
+
+Read or write a registry value:
+
+```csharp
+AppUtils.SetRegistryValue("Software\\MyApp", "SettingName", "Value");
+string value = AppUtils.GetRegistryValue("Software\\MyApp", "SettingName");
+```
+
 ## Getting Started
 
 To get started with GoatForms, simply install the NuGet package:
@@ -90,6 +110,18 @@ Include the namespace in your project:
 
 ```csharp
 using GoatForms;
+```
+
+Here’s a basic example to set up a form and add a button:
+
+```csharp
+public class MyForm : BaseForm
+{
+    public MyForm() : base("My Form", 800, 600, FormBorderStyle.Sizable, true, true, BaseForm.LayoutType.Flow)
+    {
+        Button myButton = ControlFactory.AddButton(this, "MyButton", "Click Me", (s, e) => MessageBox.Show("Button Clicked"));
+    }
+}
 ```
 
 You are now ready to start building your application with GoatForms!
