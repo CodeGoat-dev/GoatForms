@@ -16,10 +16,10 @@
     <Copyright>Copyright © 2024 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <AssemblyVersion>1.0.1.2</AssemblyVersion>
-    <FileVersion>1.0.1.2</FileVersion>
-    <Version>1.0.1</Version>
-    <PackageTags>Windows Forms</PackageTags>
+    <AssemblyVersion>1.1.0.15</AssemblyVersion>
+    <FileVersion>1.1.0.15</FileVersion>
+    <Version>1.1.0</Version>
+    <PackageTags>Windows Forms Blind Visually Impaired</PackageTags>
     <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
