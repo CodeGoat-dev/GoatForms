@@ -2,13 +2,19 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
-## V1.0.2
+## V1.1.0
 
 ### New Features
+
+New methods have been added to the `ControlFactory` class to enable controls to be added to group boxes.
 
 New methods have been added to the `AppUtils` class to facilitate event logging.
 
 ### Updated Features
+
+When creating `GroupBox` and `Panel` controls using methods in the `ControlFactory` class, parent form layout preferences are now applied to the new controls.
+
+When adding controls to `GroupBox` or `Panel` controls, the parent control is now automatically resized to fit child controls.
 
 The `GetAppDataPath()` method in the `AppUtils` class now takes your application name or relative path to your application data directory as an argument.
 
