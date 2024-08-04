@@ -28,6 +28,11 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Exposes the current layout type of the form.
+        /// </summary>
+        public LayoutType layoutType;
+
+        /// <summary>
         /// Gets the current layout type of the form.
         /// </summary>
         public LayoutType CurrentLayoutType { get; private set; }
