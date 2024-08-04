@@ -478,34 +478,49 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Creates and adds a <see cref="GroupBox"/> control to the specified form.
+        /// Creates and adds a <see cref="CustomGroupBox"/> control to the specified form.
         /// </summary>
-        /// <param name="form">The parent form to which the <see cref="GroupBox"/> will be added.</param>
-        /// <param name="text">The text for the  <see cref="GroupBox"/> control.</param>
-        /// <param name="description">The description for the  <see cref="GroupBox"/> control.</param>
-        /// <param name="styledControl">Whether the the <see cref="GroupBox"/> control should be styled.</param>
-        /// <returns>A handle to the created <see cref="GroupBox"/> control.</returns>
+        /// <param name="form">The parent form to which the <see cref="CustomGroupBox"/> will be added.</param>
+        /// <param name="text">The text for the  <see cref="CustomGroupBox"/> control.</param>
+        /// <param name="description">The description for the  <see cref="CustomGroupBox"/> control.</param>
+        /// <param name="styledControl">Whether the the <see cref="CustomGroupBox"/> control should be styled.</param>
+        /// <returns>A handle to the created <see cref="CustomGroupBox"/> control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="form"/> is <see langword="null"/>.</exception>
         /// <remarks>
-        /// This method creates a <see cref="GroupBox"/> control with the specified properties and adds it to the specified form. 
+        /// This method creates a <see cref="CustomGroupBox"/> control with the specified properties and adds it to the specified form. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static GroupBox AddGroupBox(BaseForm form, string text, string description = null, bool styledControl = false)
+        public static CustomGroupBox AddGroupBox(BaseForm form, string text, string description = null, bool styledControl = false)
         {
             if (form == null)
             {
                 throw new ArgumentNullException(nameof(form));
             }
 
-            GroupBox groupBox = new GroupBox
+            CustomGroupBox groupBox = new CustomGroupBox
             {
-                Text = text,
                 AccessibleName = text,
                 AccessibleDescription = description,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 TabStop = true
             };
+
+            switch (form.layoutType)
+            {
+                case BaseForm.LayoutType.Flow:
+                    var flowPanel = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true };
+                    groupBox.Controls.Add(flowPanel);
+                    break;
+                case BaseForm.LayoutType.Grid:
+                    var panel = new Panel { Dock = DockStyle.Fill, AutoSize = false, AutoScroll = true };
+                    groupBox.Controls.Add(panel);
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported layout type", nameof(form.layoutType));
+            }
+
+            groupBox.LayoutType = form.layoutType;
 
             form.AddControl(groupBox, styledControl);
 
@@ -986,33 +1001,43 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Creates and adds a <see cref="Panel"/> control to the specified form.
+        /// Creates and adds a <see cref="CustomPanel"/> control to the specified form.
         /// </summary>
-        /// <param name="form">The parent form to which the <see cref="Panel"/> will be added.</param>
-        /// <param name="text">The text to show on the  <see cref="Panel"/> control.</param>
-        /// <param name="description">The description for the  <see cref="Panel"/> control.</param>
-        /// <param name="styledControl">Whether the the <see cref="Panel"/> control should be styled.</param>
-        /// <returns>A handle to the created <see cref="Panel"/> control.</returns>
+        /// <param name="form">The parent form to which the <see cref="CustomPanel"/> will be added.</param>
+        /// <param name="text">The text to show on the  <see cref="CustomPanel"/> control.</param>
+        /// <param name="description">The description for the  <see cref="CustomPanel"/> control.</param>
+        /// <param name="styledControl">Whether the the <see cref="CustomPanel"/> control should be styled.</param>
+        /// <returns>A handle to the created <see cref="CustomPanel"/> control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="form"/> is <see langword="null"/>.</exception>
         /// <remarks>
-        /// This method creates a <see cref="Panel"/> control with the specified properties and adds it to the specified form. 
+        /// This method creates a <see cref="CustomPanel"/> control with the specified properties and adds it to the specified form. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static Panel AddPanel(BaseForm form, string text, string description = null, bool styledControl = false)
+        public static CustomPanel AddPanel(BaseForm form, string text, string description = null, bool styledControl = false)
         {
             if (form == null)
             {
                 throw new ArgumentNullException(nameof(form));
             }
 
-            Panel panel = new Panel
+            CustomPanel panel = new CustomPanel();
+
+            switch (form.layoutType)
             {
-                Text = text,
-                AccessibleName = text,
-                AccessibleDescription = description,
-                AutoSize = true,
-                TabStop = true
-            };
+                case BaseForm.LayoutType.Flow:
+                    panel = new CustomPanel { Dock = DockStyle.Top, AutoSize = true };
+                    break;
+                case BaseForm.LayoutType.Grid:
+                    panel = new CustomPanel { Dock = DockStyle.Top, AutoSize = false, AutoScroll = true };
+                    break;
+            }
+
+            panel.AccessibleName = text;
+            panel.AccessibleDescription = description;
+            panel.AutoSize = true;
+            panel.TabStop = true;
+
+            panel.LayoutType = form.layoutType;
 
             form.AddControl(panel, styledControl);
 
