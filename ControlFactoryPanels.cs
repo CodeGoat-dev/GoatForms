@@ -325,34 +325,49 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Creates and adds a <see cref="GroupBox"/> control to the specified panel.
+        /// Creates and adds a <see cref="CustomGroupBox"/> control to the specified panel.
         /// </summary>
-        /// <param name="panel">The parent panel to which the <see cref="GroupBox"/> will be added.</param>
-        /// <param name="text">The text for the  <see cref="GroupBox"/> control.</param>
-        /// <param name="description">The description for the  <see cref="GroupBox"/> control.</param>
-        /// <param name="styledControl">Whether the the <see cref="GroupBox"/> control should be styled.</param>
-        /// <returns>A handle to the created <see cref="GroupBox"/> control.</returns>
+        /// <param name="panel">The parent panel to which the <see cref="CustomGroupBox"/> will be added.</param>
+        /// <param name="text">The text for the  <see cref="CustomGroupBox"/> control.</param>
+        /// <param name="description">The description for the  <see cref="CustomGroupBox"/> control.</param>
+        /// <param name="styledControl">Whether the the <see cref="CustomGroupBox"/> control should be styled.</param>
+        /// <returns>A handle to the created <see cref="CustomGroupBox"/> control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="panel"/> is <see langword="null"/>.</exception>
         /// <remarks>
-        /// This method creates a <see cref="GroupBox"/> control with the specified properties and adds it to the specified panel. 
+        /// This method creates a <see cref="CustomGroupBox"/> control with the specified properties and adds it to the specified panel. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static GroupBox AddGroupBoxToPanel(Panel panel, string text, string description = null, bool styledControl = false)
+        public static CustomGroupBox AddGroupBoxToPanel(CustomPanel panel, string text, string description = null, bool styledControl = false)
         {
             if (panel == null)
             {
                 throw new ArgumentNullException(nameof(panel));
             }
 
-            GroupBox groupBox = new GroupBox
+            CustomGroupBox groupBox = new CustomGroupBox
             {
-                Text = text,
                 AccessibleName = text,
                 AccessibleDescription = description,
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink,
                 TabStop = true
             };
+
+            switch (panel.LayoutType)
+            {
+                case BaseForm.LayoutType.Flow:
+                    var flowPanel = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true };
+                    groupBox.Controls.Add(flowPanel);
+                    break;
+                case BaseForm.LayoutType.Grid:
+                    var newPanel = new Panel { Dock = DockStyle.Fill, AutoSize = false, AutoScroll = true };
+                    groupBox.Controls.Add(newPanel);
+                    break;
+                default:
+                    throw new ArgumentException("Unsupported layout type", nameof(panel.LayoutType));
+            }
+
+            groupBox.LayoutType = panel.LayoutType;
 
             AddControlToPanel(panel, groupBox, styledControl);
 
@@ -624,21 +639,31 @@ namespace GoatForms
         /// This method creates a <see cref="Panel"/> control with the specified properties and adds it to the specified panel. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static Panel AddPanelToPanel(Panel panel, string text, string description = null, bool styledControl = false)
+        public static CustomPanel AddPanelToPanel(CustomPanel panel, string text, string description = null, bool styledControl = false)
         {
             if (panel == null)
             {
                 throw new ArgumentNullException(nameof(panel));
             }
 
-            Panel newPanel = new Panel
+            CustomPanel newPanel = new CustomPanel();
+
+            switch (panel.LayoutType)
             {
-                Text = text,
-                AccessibleName = text,
-                AccessibleDescription = description,
-                AutoSize = true,
-                TabStop = true
-            };
+                case BaseForm.LayoutType.Flow:
+                    newPanel = new CustomPanel { Dock = DockStyle.Top, AutoSize = true };
+                    break;
+                case BaseForm.LayoutType.Grid:
+                    newPanel = new CustomPanel { Dock = DockStyle.Top, AutoSize = false, AutoScroll = true };
+                    break;
+            }
+
+            newPanel.AccessibleName = text;
+            newPanel.AccessibleDescription = description;
+            newPanel.AutoSize = true;
+            newPanel.TabStop = true;
+
+            newPanel.LayoutType = panel.LayoutType;
 
             AddControlToPanel(panel, newPanel, styledControl);
 
