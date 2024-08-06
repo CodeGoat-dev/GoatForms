@@ -2,6 +2,16 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.1.1
+
+### New Features
+
+The `AppUtils` class now has a new `CreateAppDataDirectory()` method to create application data directories.
+
+## Bug Fixes
+
+The `CreateMutex()` method in the `AppUtils` class could cause unexpected compilation errors in applications.
+
 ## V1.1.0
 
 ### New Features
