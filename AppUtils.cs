@@ -108,6 +108,28 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Creates the directory for storing application data.
+        /// </summary>
+        /// <param name="appName">Your application's name or the relative path to application data.</param>
+        /// <returns>The path for application data.</returns>
+        public static string CreateAppDataDirectory(string appName = null)
+        {
+            if (appName == null)
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
+            public string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
+
+            if (!DirectoryExists(directoryPath))
+            {
+                Directory.Create(directoryPath);
+            }
+
+            return directoryPath;
+        }
+
+        /// <summary>
         /// Logs a message to a specified log file.
         /// </summary>
         /// <param name="message">The message to log.</param>
