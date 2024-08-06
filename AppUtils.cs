@@ -119,11 +119,11 @@ namespace GoatForms
                 throw new ArgumentNullException(nameof(appName));
             }
 
-            public string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
+            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
 
-            if (!DirectoryExists(directoryPath))
+            if (!Directory.Exists(directoryPath))
             {
-                Directory.Create(directoryPath);
+                Directory.CreateDirectory(directoryPath);
             }
 
             return directoryPath;
