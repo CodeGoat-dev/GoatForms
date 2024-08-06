@@ -29,17 +29,58 @@ namespace GoatForms
             }
 
             bool isNew;
-            _mutex = new Mutex(true, mutexName, out isNew);
+            try
+            {
+                // Ensure that any previous mutex is disposed of
+                ReleaseMutex();
+                
+                _mutex = new Mutex(true, mutexName, out isNew);
+            }
+            catch (ArgumentException ex)
+            {
+                // Log and/or display the exception details
+                MessageBox.Show($"Invalid mutex name: {ex.Message}", "Error");
+                return false;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Log and/or display the exception details
+                LogError(ex, "error.log");
+                MessageBox.Show($"Access denied: {ex.Message}", "Error");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                // Log and/or display the exception details
+                LogError(ex, "error.log");
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error");
+                return false;
+            }
+
             return isNew;
         }
 
         /// <summary>
-        /// Releases the mutex.
+        /// Releases the mutex and disposes of it.
         /// </summary>
         public static void ReleaseMutex()
         {
-            _mutex?.ReleaseMutex();
-            _mutex?.Dispose();
+            if (_mutex != null)
+            {
+                try
+                {
+                    _mutex.ReleaseMutex();
+                }
+                catch (ApplicationException ex)
+                {
+                    MessageBox.Show($"Failed to release mutex: {ex.Message}", "Error");
+                }
+                finally
+                {
+                    _mutex.Dispose();
+                    _mutex = null;
+                }
+            }
         }
 
         /// <summary>
