@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.1.2
+
+## Bug Fixes
+
+Fixed issues in `AppUtils` regarding application data directory creation and retrieval.
+
 ## V1.1.1
 
 ### New Features

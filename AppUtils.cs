@@ -45,14 +45,12 @@ namespace GoatForms
             catch (UnauthorizedAccessException ex)
             {
                 // Log and/or display the exception details
-                LogError(ex, "error.log");
                 MessageBox.Show($"Access denied: {ex.Message}", "Error");
                 return false;
             }
             catch (Exception ex)
             {
                 // Log and/or display the exception details
-                LogError(ex, "error.log");
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error");
                 return false;
             }
@@ -104,7 +102,7 @@ namespace GoatForms
                 throw new ArgumentNullException(nameof(appName));
             }
 
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" appName;
         }
 
         /// <summary>
@@ -119,7 +117,7 @@ namespace GoatForms
                 throw new ArgumentNullException(nameof(appName));
             }
 
-            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), appName);
+            string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + appName;
 
             if (!Directory.Exists(directoryPath))
             {
