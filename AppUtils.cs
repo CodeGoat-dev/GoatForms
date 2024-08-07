@@ -102,7 +102,7 @@ namespace GoatForms
                 throw new ArgumentNullException(nameof(appName));
             }
 
-            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" appName;
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + appName;
         }
 
         /// <summary>
