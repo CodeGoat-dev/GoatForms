@@ -9,7 +9,7 @@
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
-    <PackageReleaseNotes>CHANGELOG.md</PackageReleaseNotes>
+    <PackageReleaseNotes>changelog.md</PackageReleaseNotes>
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
     <Company>Goat Technologies</Company>
     <Product>GoatForms Library</Product>
@@ -72,7 +72,7 @@
       <Pack>true</Pack>
       <PackagePath/>
     </None>
-    <None Update="CHANGELOG.md">
+    <None Update="changelog.md">
       <Pack>true</Pack>
       <PackagePath />
     </None>
