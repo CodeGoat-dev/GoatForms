@@ -2,6 +2,16 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.1.3
+
+## Updated Features
+
+The `AddListBox()`, `AddCheckedListBox()`, `AddListBoxToGroupBox()`, `AddCheckedListBoxToGroupBox()`, `AddListBoxToPanel()`, `AddCheckedListBoxToPanel()`, `AddListBoxToTabPage()` and `AddCheckedListBoxToTabPage()` methods in the `ControlFactory` class now accept arguments for `SelectionChanged` event handlers. This is a breaking change.
+
+## Bug Fixes
+
+The change log was not correctly included in NuGet packages.
+
 ## V1.1.2
 
 ## Bug Fixes

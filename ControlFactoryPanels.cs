@@ -201,6 +201,7 @@ namespace GoatForms
         /// </summary>
         /// <param name="panel">The parent panel to which the <see cref="ListBox"/> will be added.</param>
         /// <param name="description">The description for the  <see cref="ListBox"/> control.</param>
+        /// <param name="onSelectedIndexChanged">The selection changed <see chref="EventHandler"/> for the  <see cref="ListBox"/> control.</param>
         /// <param name="styledControl">Whether the the <see cref="ListBox"/> control should be styled.</param>
         /// <returns>A handle to the created <see cref="ListBox"/> control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="panel"/> is <see langword="null"/>.</exception>
@@ -208,7 +209,7 @@ namespace GoatForms
         /// This method creates a <see cref="ListBox"/> control with the specified properties and adds it to the specified panel. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static ListBox AddListBoxToPanel(Panel panel, string description = null, bool styledControl = false)
+        public static ListBox AddListBoxToPanel(Panel panel, string description = null, EventHandler onSelectedIndexChanged = null, bool styledControl = false)
         {
             if (panel == null)
             {
@@ -223,6 +224,11 @@ namespace GoatForms
                 TabStop = true
             };
 
+            if (onSelectedIndexChanged != null)
+            {
+                listBox.SelectedIndexChanged += onSelectedIndexChanged;
+            }
+
             AddControlToPanel(panel, listBox, styledControl);
 
             return listBox;
@@ -233,6 +239,7 @@ namespace GoatForms
         /// </summary>
         /// <param name="panel">The parent panel to which the <see cref="CheckedListBox"/> will be added.</param>
         /// <param name="description">The description for the  <see cref="CheckedListBox"/> control.</param>
+        /// <param name="onSelectedIndexChanged">The selection changed <see chref="EventHandler"/> for the  <see cref="CheckedListBox"/> control.</param>
         /// <param name="styledControl">Whether the the <see cref="CheckedListBox"/> control should be styled.</param>
         /// <returns>A handle to the created <see cref="CheckedListBox"/> control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="panel"/> is <see langword="null"/>.</exception>
@@ -240,7 +247,7 @@ namespace GoatForms
         /// This method creates a <see cref="CheckedListBox"/> control with the specified properties and adds it to the specified panel. 
         /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
         /// </remarks>
-        public static CheckedListBox AddCheckedListBoxToPanel(Panel panel, string description = null, bool styledControl = false)
+        public static CheckedListBox AddCheckedListBoxToPanel(Panel panel, string description = null, EventHandler onSelectedIndexChanged = null, bool styledControl = false)
         {
             if (panel == null)
             {
@@ -254,6 +261,11 @@ namespace GoatForms
                 Height = 150,
                 TabStop = true
             };
+
+            if (onSelectedIndexChanged != null)
+            {
+                checkedListBox.SelectedIndexChanged += onSelectedIndexChanged;
+            }
 
             AddControlToPanel(panel, checkedListBox, styledControl);
 
