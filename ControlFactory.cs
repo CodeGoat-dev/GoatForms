@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -486,7 +487,47 @@ namespace GoatForms
                 throw new ArgumentNullException(nameof(comboBox));
             }
 
+            if (string.IsNullOrWhiteSpace(itemText))
+            {
+                throw new ArgumentException("Item text cannot be null or empty.", nameof(itemText));
+            }
+
             comboBox.Items.Add(itemText);
+        }
+
+        /// <summary>
+        /// Creates and adds a key-value pair item to the specified combo box.
+        /// </summary>
+        /// <param name="comboBox">The parent combo box to which the combo box item will be added.</param>
+        /// <param name="key">The display text for the combo box item.</param>
+        /// <param name="value">The value associated with the combo box item.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="comboBox"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/> or empty.</exception>
+        public static void AddComboBoxItem(ComboBox comboBox, string key, int value)
+        {
+            if (comboBox == null)
+            {
+                throw new ArgumentNullException(nameof(comboBox));
+            }
+
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new ArgumentException("Key cannot be null or empty.", nameof(key));
+            }
+
+            // Add the key-value pair as a KeyValuePair object to the combo box
+            comboBox.Items.Add(new KeyValuePair<string, int>(key, value));
+
+            // Set the DisplayMember and ValueMember properties if they are not already set
+            if (string.IsNullOrEmpty(comboBox.DisplayMember))
+            {
+                comboBox.DisplayMember = "Key";
+            }
+
+            if (string.IsNullOrEmpty(comboBox.ValueMember))
+            {
+                comboBox.ValueMember = "Value";
+            }
         }
 
         /// <summary>

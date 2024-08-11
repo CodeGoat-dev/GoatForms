@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.1.4
+
+## New Features
+
+The `ControlFactory` class now has an overload method to add key/value pairs to combo boxes.
+
 ## V1.1.3
 
 ## Updated Features
