@@ -6,12 +6,13 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <readme>readme.md</readme>
+    <releasenotes>changelog.md</releasenotes>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <icon>icon.png</icon>
     <projectUrl>https://github.com/CodeGoat-dev/GoatForms/</projectUrl>
     <description>$description$</description>
     <copyright>$copyright$</copyright>
-    <tags>Windows Forms Class Library</tags>
+    <tags>Windows Forms Utility Library Blind Visually Impaired</tags>
   </metadata>
 </package>
