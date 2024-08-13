@@ -2,6 +2,14 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.1.5
+
+### Updated Features
+
+When adding controls to forms, group boxes and panels, the parent control is no longer automatically resized.
+
+Parent control resizing should be done after adding all controls, using the `BaseForm.ResizeFormToFitControls` method for forms and the `ControlFactory.ResizeGroupBoxToFitControls` and `ControlFactory.ResizePanelToFitControls` methods for group boxes and panels respectively.
+
 ## V1.1.4
 
 ## New Features
