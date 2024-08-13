@@ -47,8 +47,6 @@ namespace GoatForms
             }
 
             container.Controls.Add(control);
-
-            ResizeGroupBoxToFitControls(groupBox);
         }
 
         // Internal method to add a control to a specific TabPage
@@ -85,96 +83,6 @@ namespace GoatForms
             }
 
             panel.Controls.Add(control);
-
-            if (panel is FlowLayoutPanel || panel is Panel)
-            {
-                ResizePanelToFitControls(panel);
-            }
-        }
-
-        // Internal method to resize a GroupBox to fit controls
-        internal static void ResizeGroupBoxToFitControls(GroupBox groupBox)
-        {
-            if (groupBox == null)
-            {
-                throw new ArgumentNullException(nameof(groupBox));
-            }
-
-            // Ensure that there are controls inside the GroupBox
-            if (groupBox.Controls.Count == 0)
-            {
-                return;
-            }
-
-            // Get the container control (either FlowLayoutPanel or Panel)
-            Control container = groupBox.Controls[0];
-    
-            // Calculate the desired size based on the contained controls
-            int width = container.Width;
-            int height = container.Height;
-    
-            foreach (Control control in container.Controls)
-            {
-                // Calculate the bottom and right edge of the controls
-                int bottom = control.Bottom;
-                int right = control.Right;
-        
-                if (bottom > height)
-                {
-                    height = bottom;
-                }
-                if (right > width)
-                {
-                    width = right;
-                }
-            }
-
-            // Set the size of the GroupBox to fit its contained controls
-            groupBox.AutoSize = false;
-            groupBox.AutoSizeMode = AutoSizeMode.GrowOnly; // Or other desired AutoSizeMode
-            groupBox.Width = width;
-            groupBox.Height = height;
-        }
-
-        // Internal method to resize a Panel to fit controls
-        internal static void ResizePanelToFitControls(Panel panel)
-        {
-            if (panel == null)
-            {
-                throw new ArgumentNullException(nameof(panel));
-            }
-
-            // Ensure that there are controls inside the Panel
-            if (panel.Controls.Count == 0)
-            {
-                return;
-            }
-
-            // Calculate the desired size based on the contained controls
-            int width = panel.Width;
-            int height = panel.Height;
-
-            foreach (Control control in panel.Controls)
-            {
-                // Calculate the bottom and right edge of the controls
-                int bottom = control.Bottom;
-                int right = control.Right;
-
-                if (bottom > height)
-                {
-                    height = bottom;
-                }
-                if (right > width)
-                {
-                    width = right;
-                }
-            }
-
-            // Set the size of the Panel to fit its contained controls
-            panel.AutoSize = false;
-            panel.AutoSizeMode = AutoSizeMode.GrowOnly; // Or other desired AutoSizeMode
-            panel.Width = width;
-            panel.Height = height;
         }
     }
 }

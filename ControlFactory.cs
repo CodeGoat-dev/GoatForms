@@ -1760,5 +1760,106 @@ namespace GoatForms
             if (text == null) throw new ArgumentNullException(nameof(text));
             toolTip.SetToolTip(control, text);
         }
+
+        /// <summary>
+        /// Resizes the specified <see chref="GroupBox"/> to fit it's controls.
+        /// </summary>
+        /// <param name="groupBox">The group box to resize.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="groupBox"/> is <see langword="null"/>.</exception>
+        /// <remarks>
+        /// This method resizes the specified <see chref="GroupBox"/> to fit it's controls. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// </remarks>
+        public static void ResizeGroupBoxToFitControls(GroupBox groupBox)
+        {
+            if (groupBox == null)
+            {
+                throw new ArgumentNullException(nameof(groupBox));
+            }
+
+            // Ensure that there are controls inside the GroupBox
+            if (groupBox.Controls.Count == 0)
+            {
+                return;
+            }
+
+            // Get the container control (either FlowLayoutPanel or Panel)
+            Control container = groupBox.Controls[0];
+    
+            // Calculate the desired size based on the contained controls
+            int width = container.Width;
+            int height = container.Height;
+    
+            foreach (Control control in container.Controls)
+            {
+                // Calculate the bottom and right edge of the controls
+                int bottom = control.Bottom;
+                int right = control.Right;
+        
+                if (bottom > height)
+                {
+                    height = bottom;
+                }
+                if (right > width)
+                {
+                    width = right;
+                }
+            }
+
+            // Set the size of the GroupBox to fit its contained controls
+            groupBox.AutoSize = false;
+            groupBox.AutoSizeMode = AutoSizeMode.GrowOnly; // Or other desired AutoSizeMode
+            groupBox.Width = width;
+            groupBox.Height = height;
+        }
+
+        /// <summary>
+        /// Resizes the specified <see chref="Panel"/> to fit it's controls.
+        /// </summary>
+        /// <param name="panel">The panel to resize.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="panel"/> is <see langword="null"/>.</exception>
+        /// <remarks>
+        /// This method resizes the specified <see chref="Panel"/> to fit it's controls. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// </remarks>
+        public static void ResizePanelToFitControls(Panel panel)
+        {
+            if (panel == null)
+            {
+                throw new ArgumentNullException(nameof(panel));
+            }
+
+            // Ensure that there are controls inside the Panel
+            if (panel.Controls.Count == 0)
+            {
+                return;
+            }
+
+            // Calculate the desired size based on the contained controls
+            int width = panel.Width;
+            int height = panel.Height;
+
+            foreach (Control control in panel.Controls)
+            {
+                // Calculate the bottom and right edge of the controls
+                int bottom = control.Bottom;
+                int right = control.Right;
+
+                if (bottom > height)
+                {
+                    height = bottom;
+                }
+                if (right > width)
+                {
+                    width = right;
+                }
+            }
+
+            // Set the size of the Panel to fit its contained controls
+            panel.AutoSize = false;
+            panel.AutoSizeMode = AutoSizeMode.GrowOnly; // Or other desired AutoSizeMode
+            panel.Width = width;
+            panel.Height = height;
+        }
     }
 }
