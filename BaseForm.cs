@@ -192,8 +192,11 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Resizes the form to fit the controls based on the current layout type.
+        /// Resizes the form to fit it's controls.
         /// </summary>
+        /// <remarks>
+        /// This method resizes the <see chref="BaseForm"/> from which it was called to fit it's controls. 
+        /// </remarks>
         public void ResizeFormToFitControls()
         {
             if (CurrentLayoutType == LayoutType.Flow)
