@@ -39,6 +39,12 @@ For example, to add a styled button:
 Button myButton = ControlFactory.AddButton(this, "My Button", "Click Me", (s, e) => clickHandler());
 ```
 
+### Cleaning Up
+
+Once you have populated your form controls, use the `form.ResizeFormToFitControls` method to clean up your user interface.
+
+You should use the methods in `ControlFactory` to do the same for `GroupBox` and `Panel` controls once fully populated.
+
 ### Getting And Setting Control States
 
 You can get control states using the `GetControlState` method.
@@ -120,6 +126,7 @@ public class MyForm : BaseForm
     public MyForm() : base("My Form", 800, 600, FormBorderStyle.Sizable, true, true, BaseForm.LayoutType.Flow)
     {
         Button myButton = ControlFactory.AddButton(this, "MyButton", "Click Me", (s, e) => MessageBox.Show("Button Clicked"));
+        this.ResizeFormToFitControls();
     }
 }
 ```
