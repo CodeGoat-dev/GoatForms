@@ -10,6 +10,7 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/LICENSE</PackageLicenseUrl>
     <PackageReadmeUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/readme.md</PackageReadmeUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
     <PackageReleaseNotes>changelog.md</PackageReleaseNotes>
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
     <Company>Goat Technologies</Company>
@@ -20,7 +21,10 @@
     <AssemblyVersion>1.2.0.40</AssemblyVersion>
     <FileVersion>1.2.0.40</FileVersion>
     <Version>1.2.0</Version>
+    <PackageTags>Windows Forms Utility Library Blind Visually Impaired</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Debug and Release configurations -->
@@ -47,18 +51,19 @@
   <ItemGroup>
     <None Update="LICENSE">
       <Pack>true</Pack>
+      <PackagePath />
     </None>
     <None Update="readme.md">
       <Pack>true</Pack>
-      <PackagePath>readme.md</PackagePath>
+      <PackagePath />
     </None>
     <None Update="icon.png">
       <Pack>true</Pack>
-      <PackagePath>icon.png</PackagePath>
+      <PackagePath />
     </None>
     <None Update="changelog.md">
       <Pack>true</Pack>
-      <PackagePath>changelog.md</PackagePath>
+      <PackagePath />
     </None>
   </ItemGroup>
 
