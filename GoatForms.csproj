@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net48;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
+    <UseWPF>false</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <OutputType>Library</OutputType>
     <RootNamespace>GoatForms</RootNamespace>
     <AssemblyName>GoatForms</AssemblyName>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/LICENSE</PackageLicenseUrl>
+    <PackageReadmeUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/readme.md</PackageReadmeUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
     <PackageReleaseNotes>changelog.md</PackageReleaseNotes>
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
@@ -16,12 +17,10 @@
     <Copyright>Copyright © 2024 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <AssemblyVersion>1.1.5.32</AssemblyVersion>
-    <FileVersion>1.1.5.32</FileVersion>
-    <Version>1.1.5</Version>
-    <PackageTags>Windows Forms Utility Library Blind Visually Impaired</PackageTags>
-    <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyVersion>1.2.0.40</AssemblyVersion>
+    <FileVersion>1.2.0.40</FileVersion>
+    <Version>1.2.0</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- Debug and Release configurations -->
@@ -45,49 +44,37 @@
     <DocumentationFile>bin\Release\net48\GoatForms.xml</DocumentationFile>
   </PropertyGroup>
 
-  <!-- References -->
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  
   <ItemGroup>
     <None Update="LICENSE">
       <Pack>true</Pack>
-      <PackagePath />
     </None>
     <None Update="readme.md">
       <Pack>true</Pack>
-      <PackagePath />
+      <PackagePath>readme.md</PackagePath>
     </None>
     <None Update="icon.png">
       <Pack>true</Pack>
-      <PackagePath/>
+      <PackagePath>icon.png</PackagePath>
     </None>
     <None Update="changelog.md">
       <Pack>true</Pack>
-      <PackagePath />
+      <PackagePath>changelog.md</PackagePath>
     </None>
   </ItemGroup>
-  
-  <ItemGroup>
+
+  <!-- Conditional references for .NET Framework 4.8 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <!-- Add other .NET Framework-specific references here -->
   </ItemGroup>
+
+  <!-- Conditional references for .NET 6.0 and above -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' Or '$(TargetFramework)' == 'net7.0' Or '$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    <!-- Add other .NET 6.0/7.0/8.0-specific references here -->
+  </ItemGroup>
+
+  <!-- Add any other conditional configurations or references needed for different frameworks -->
 </Project>
