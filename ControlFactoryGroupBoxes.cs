@@ -525,35 +525,48 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Creates and adds a <see cref="StatusBar"/> control to the specified group box.
+        /// Creates and adds a status control (either <see cref="StatusBar"/> or <see cref="StatusStrip"/> depending on the framework) to the specified group box.
         /// </summary>
-        /// <param name="groupBox">The parent group box to which the <see cref="StatusBar"/> will be added.</param>
-        /// <param name="text">The text to show on the  <see cref="StatusBar"/> control.</param>
-        /// <param name="name">The accessible name for the  <see cref="StatusBar"/> control.</param>
-        /// <param name="description">The description for the  <see cref="StatusBar"/> control.</param>
-        /// <param name="styledControl">Whether the the <see cref="StatusBar"/> control should be styled.</param>
-        /// <returns>A handle to the created <see cref="StatusBar"/> control.</returns>
+        /// <param name="groupBox">The parent group box to which the status control will be added.</param>
+        /// <param name="text">The text to show on the status control.</param>
+        /// <param name="name">The accessible name for the status control.</param>
+        /// <param name="description">The description for the status control.</param>
+        /// <param name="styledControl">Whether the status control should be styled.</param>
+        /// <returns>A handle to the created status control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="groupBox"/> is <see langword="null"/>.</exception>
         /// <remarks>
-        /// This method creates a <see cref="StatusBar"/> control with the specified properties and adds it to the specified group box. 
-        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// This method creates a status control with the specified properties and adds it to the specified group box.
         /// </remarks>
-        public static StatusBar AddStatusBarToGroupBox(GroupBox groupBox, string text = "", string name = null, string description = null, bool styledControl = false)
+        public static Control AddStatusBarToGroupBox(GroupBox groupBox, string text = "", string name = null, string description = null, bool styledControl = false)
         {
             if (groupBox == null)
             {
                 throw new ArgumentNullException(nameof(groupBox));
             }
 
-            StatusBar statusBar = new StatusBar{
+            #if NET48
+            // .NET Framework 4.8 and earlier - Use StatusBar
+            StatusBar statusBar = new StatusBar
+            {
                 Text = text,
                 AccessibleName = name,
                 AccessibleDescription = description
             };
-
             AddControlToGroupBox(groupBox, statusBar, styledControl);
-
             return statusBar;
+            #else
+            // .NET Core and later - Use StatusStrip
+            StatusStrip statusStrip = new StatusStrip();
+            ToolStripStatusLabel statusLabel = new ToolStripStatusLabel
+            {
+                Text = text,
+                AccessibleName = name,
+                AccessibleDescription = description
+            };
+            statusStrip.Items.Add(statusLabel);
+            AddControlToGroupBox(groupBox, statusStrip, styledControl);
+            return statusStrip;
+            #endif
         }
 
         /// <summary>

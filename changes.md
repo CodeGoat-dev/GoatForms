@@ -2,6 +2,14 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.0
+
+### New Features
+
+GoatForms now supports DotNET 6, 7 and 8.
+
+There is only one difference when using DotNET 6 and above, the `StatusBar` control is replaced by `StatusStrip`.
+
 ## V1.1.5
 
 ### Updated Features

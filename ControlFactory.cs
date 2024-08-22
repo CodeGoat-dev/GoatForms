@@ -990,35 +990,48 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Creates and adds a <see cref="StatusBar"/> control to the specified form.
+        /// Creates and adds a status control (either <see cref="StatusBar"/> or <see cref="StatusStrip"/> depending on the framework) to the specified form.
         /// </summary>
-        /// <param name="form">The parent form to which the <see cref="StatusBar"/> will be added.</param>
-        /// <param name="text">The text to show on the  <see cref="StatusBar"/> control.</param>
-        /// <param name="name">The accessible name for the  <see cref="StatusBar"/> control.</param>
-        /// <param name="description">The description for the  <see cref="StatusBar"/> control.</param>
-        /// <param name="styledControl">Whether the the <see cref="StatusBar"/> control should be styled.</param>
-        /// <returns>A handle to the created <see cref="StatusBar"/> control.</returns>
+        /// <param name="form">The parent form to which the status control will be added.</param>
+        /// <param name="text">The text to show on the status control.</param>
+        /// <param name="name">The accessible name for the status control.</param>
+        /// <param name="description">The description for the status control.</param>
+        /// <param name="styledControl">Whether the status control should be styled.</param>
+        /// <returns>A handle to the created status control.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="form"/> is <see langword="null"/>.</exception>
         /// <remarks>
-        /// This method creates a <see cref="StatusBar"/> control with the specified properties and adds it to the specified form. 
-        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// This method creates a status control with the specified properties and adds it to the specified form.
         /// </remarks>
-        public static StatusBar AddStatusBar(BaseForm form, string text = "", string name = null, string description = null, bool styledControl = false)
+        public static Control AddStatusBar(BaseForm form, string text = "", string name = null, string description = null, bool styledControl = false)
         {
             if (form == null)
             {
                 throw new ArgumentNullException(nameof(form));
             }
 
-            StatusBar statusBar = new StatusBar{
+            #if NET48
+            // .NET Framework 4.8 and earlier - Use StatusBar
+            StatusBar statusBar = new StatusBar
+            {
                 Text = text,
                 AccessibleName = name,
                 AccessibleDescription = description
             };
-
             form.AddControl(statusBar, styledControl);
-
             return statusBar;
+            #else
+            // .NET Core and later - Use StatusStrip
+            StatusStrip statusStrip = new StatusStrip();
+            ToolStripStatusLabel statusLabel = new ToolStripStatusLabel
+            {
+                Text = text,
+                AccessibleName = name,
+                AccessibleDescription = description
+            };
+            statusStrip.Items.Add(statusLabel);
+            form.AddControl(statusStrip, styledControl);
+            return statusStrip;
+            #endif
         }
 
         /// <summary>
