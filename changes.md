@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.1
+
+### Updated Features
+
+In DotNET 6 or above, when creating a `StatusStrip`, the `Text`, `AccessibleName` and `AccessibleDescription` properties for the actual `StatusStrip` are populated the same as the properties for the label.
+
 ## V1.2.0
 
 ### New Features

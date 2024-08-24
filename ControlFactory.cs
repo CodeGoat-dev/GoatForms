@@ -1021,7 +1021,12 @@ namespace GoatForms
             return statusBar;
             #else
             // .NET Core and later - Use StatusStrip
-            StatusStrip statusStrip = new StatusStrip();
+            StatusStrip statusStrip = new StatusStrip
+            {
+                Text = text,
+                AccessibleName = name,
+                AccessibleDescription = description
+            }
             ToolStripStatusLabel statusLabel = new ToolStripStatusLabel
             {
                 Text = text,
