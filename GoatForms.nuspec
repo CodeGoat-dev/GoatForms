@@ -13,6 +13,6 @@
     <projectUrl>https://github.com/CodeGoat-dev/GoatForms/</projectUrl>
     <description>$description$</description>
     <copyright>$copyright$</copyright>
-    <tags>Windows Forms Utility Library Blind Visually Impaired</tags>
+    <tags>Windows Forms Utility Library GUI UI UX Blind Visually Impaired</tags>
   </metadata>
 </package>
