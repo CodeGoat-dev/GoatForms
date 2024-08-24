@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFrameworks>net48;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
     <UseWPF>false</UseWPF>
@@ -10,7 +11,6 @@
     <PackageLicenseUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/LICENSE</PackageLicenseUrl>
     <PackageReadmeUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/readme.md</PackageReadmeUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/CodeGoat-dev/GoatForms/main/icon.png</PackageIconUrl>
     <PackageReleaseNotes>changelog.md</PackageReleaseNotes>
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
     <Company>Goat Technologies</Company>
@@ -18,10 +18,10 @@
     <Copyright>Copyright © 2024 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <AssemblyVersion>1.2.0.40</AssemblyVersion>
-    <FileVersion>1.2.0.40</FileVersion>
-    <Version>1.2.0</Version>
-    <PackageTags>Windows Forms Utility Library Blind Visually Impaired</PackageTags>
+    <AssemblyVersion>1.2.1.44</AssemblyVersion>
+    <FileVersion>1.2.1.44</FileVersion>
+    <Version>1.2.1</Version>
+    <PackageTags>Windows Forms Utility Library GUI UI UX Blind Visually Impaired</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
