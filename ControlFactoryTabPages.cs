@@ -556,7 +556,7 @@ namespace GoatForms
                 AccessibleDescription = description
             };
             AddControlToTabPage(tabPage, statusBar, styledControl);
-            return statusBar;
+            return (StatusBar)statusBar;
             #else
             // .NET Core and later - Use StatusStrip
             StatusStrip statusStrip = new StatusStrip
@@ -564,7 +564,7 @@ namespace GoatForms
                 Text = text,
                 AccessibleName = name,
                 AccessibleDescription = description
-            }
+            };
             ToolStripStatusLabel statusLabel = new ToolStripStatusLabel
             {
                 Text = text,
@@ -573,7 +573,7 @@ namespace GoatForms
             };
             statusStrip.Items.Add(statusLabel);
             AddControlToTabPage(tabPage, statusStrip, styledControl);
-            return statusStrip;
+            return (StatusStrip)statusStrip;
             #endif
         }
 

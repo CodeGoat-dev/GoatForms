@@ -8,6 +8,10 @@ This document outlines the changes made between versions of the GoatForms librar
 
 In DotNET 6 or above, when creating a `StatusStrip`, the `Text`, `AccessibleName` and `AccessibleDescription` properties for the actual `StatusStrip` are populated the same as the properties for the label.
 
+## Bug Fixes
+
+When creating `StatusBar` or `StatusStrip` controls the correct return type is now returned. This issue can be worked around by using `(StatusStrip)ControlFactory.AddStatusBar(this, "Status", "Status", "Status Bar", false)` replacing `StatusStrip` for `StatusBar` in DotNET Framework 4.8.
+
 ## V1.2.0
 
 ### New Features
