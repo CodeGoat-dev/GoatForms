@@ -1879,5 +1879,54 @@ namespace GoatForms
             panel.Width = width;
             panel.Height = height;
         }
+
+        /// <summary>
+        /// Resizes the specified <see chref="TabPage"/> to fit it's controls.
+        /// </summary>
+        /// <param name="tabPage">The tab page to resize.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="tabPage"/> is <see langword="null"/>.</exception>
+        /// <remarks>
+        /// This method resizes the specified <see chref="TabPage"/> to fit it's controls. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// </remarks>
+        public static void ResizeTabPageToFitControls(TabPage tabPage)
+        {
+            if (tabPage == null)
+            {
+                throw new ArgumentNullException(nameof(tabPage));
+            }
+
+            // Ensure that there are controls inside the TabPage
+            if (tabPage.Controls.Count == 0)
+            {
+                return;
+            }
+
+            // Calculate the desired size based on the contained controls
+            int width = tabPage.Width;
+            int height = tabPage.Height;
+
+            foreach (Control control in tabPage.Controls)
+            {
+                // Calculate the bottom and right edge of the controls
+                int bottom = control.Bottom;
+                int right = control.Right;
+
+                if (bottom > height)
+                {
+                    height = bottom;
+                }
+                if (right > width)
+                {
+                    width = right;
+                }
+            }
+
+            // Set the size of the TabPage to fit its contained controls
+            tabPage.AutoSize = false;
+            tabPage.AutoSizeMode = AutoSizeMode.GrowOnly; // Or other desired AutoSizeMode
+            tabPage.Width = width;
+            tabPage.Height = height;
+        }
     }
 }

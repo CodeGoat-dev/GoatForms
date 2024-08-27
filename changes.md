@@ -2,6 +2,14 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.2
+
+## New Features
+
+You can now resize tab pages to fit child controls.
+
+You should use the new `ResizeTabPageToFitControls` method in the `ControlFactory` class to resize tab pages after populating all controls.
+
 ## V1.2.1
 
 ### Updated Features
