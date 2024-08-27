@@ -18,9 +18,9 @@
     <Copyright>Copyright © 2024 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <AssemblyVersion>1.2.1.44</AssemblyVersion>
-    <FileVersion>1.2.1.44</FileVersion>
-    <Version>1.2.1</Version>
+    <AssemblyVersion>1.2.2.48</AssemblyVersion>
+    <FileVersion>1.2.2.48</FileVersion>
+    <Version>1.2.2</Version>
     <PackageTags>Windows Forms Utility Library GUI UI UX Blind Visually Impaired</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
