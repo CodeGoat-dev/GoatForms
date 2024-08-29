@@ -280,7 +280,7 @@ namespace GoatForms
         }
 
         /// <summary>
-        /// Adds a control to the form with optional styling.
+        /// Adds a control to the form with optional styling and intelligent positioning.
         /// </summary>
         /// <param name="control">The control to add to the form.</param>
         /// <param name="styled">Whether the control should be styled.</param>
@@ -296,7 +296,31 @@ namespace GoatForms
                 control.ForeColor = ControlFactory._style.ForeColor;
                 control.Font = ControlFactory._style.Font;
             }
-            
+
+            // Intelligent positioning based on the last control's position.
+            if (this.Controls.Count > 0)
+            {
+                Control lastControl = this.Controls[this.Controls.Count - 1];
+
+                // Adjust position based on the last control's location and size.
+                control.Location = new Point(
+                    lastControl.Location.X + lastControl.Width + 10, // 10 is the margin between controls
+                    lastControl.Location.Y
+                );
+
+                // If the control goes beyond the form's width, move it to the next row
+                if (control.Right > this.ClientSize.Width)
+                {
+                    control.Location = new Point(10, lastControl.Location.Y + lastControl.Height + 10);
+                }
+            }
+            else
+            {
+                // If no controls exist, place the control at the default starting position
+                control.Location = new Point(10, 10); // 10 is the margin from the top-left corner
+            }
+
+            // Add the control to the appropriate panel based on the layout type
             if (CurrentLayoutType == LayoutType.Flow)
             {
                 FlowLayoutPanel.Controls.Add(control);
