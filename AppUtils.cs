@@ -128,6 +128,43 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Gets the path for storing common application data.
+        /// </summary>
+        /// <param name="appName">Your application's name or the relative path to common application data.</param>
+        /// <returns>The path for common application data.</returns>
+        public static string GetCommonAppDataPath(string appName = null)
+        {
+            if (appName == null)
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
+        }
+
+        /// <summary>
+        /// Creates the directory for storing common application data.
+        /// </summary>
+        /// <param name="appName">Your application's name or the relative path to common application data.</param>
+        /// <returns>The path for common application data.</returns>
+        public static string CreateCommonAppDataDirectory(string appName = null)
+        {
+            if (appName == null)
+            {
+                throw new ArgumentNullException(nameof(appName));
+            }
+
+            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), appName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            return directoryPath;
+        }
+
+        /// <summary>
         /// Logs a message to a specified log file.
         /// </summary>
         /// <param name="message">The message to log.</param>
