@@ -2,6 +2,14 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.3
+
+## New Features
+
+GoatForms now performs more intelligent form analysis when adding controls. This change should improve the layout of complex forms and make the library more usable.
+
+The `AppUtils` class now contains methods for fetching and creating common application data directories.
+
 ## V1.2.2
 
 ## New Features
