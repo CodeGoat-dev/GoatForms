@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.4
+
+## New Features
+
+Just like in the vV1.2.3 update, GoatForms now performs more intelligent form analysis when adding controls to panels, group boxes and tab pages. This change should improve the layout of complex forms which use advanced control arrangements and make the library more usable.
+
 ## V1.2.3
 
 ## New Features
