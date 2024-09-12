@@ -280,6 +280,46 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Creates and adds a key-value pair item to the specified list box.
+        /// </summary>
+        /// <param name="listBox">The parent list box to which the list box item will be added.</param>
+        /// <param name="key">The display text for the list box item.</param>
+        /// <param name="value">The value associated with the list box item.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="listBox"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/> or empty.</exception>
+        /// <remarks>
+        /// This method creates a checked list box item with the specified properties and adds it to the specified checked list box. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// If the key is <see langword="null"/> or empty, an <see cref="ArgumentException"/> will be thrown. 
+        /// </remarks>
+        public static void AddListBoxItem(ListBox listBox, string key, int value)
+        {
+            if (listBox == null)
+            {
+                throw new ArgumentNullException(nameof(listBox));
+            }
+
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new ArgumentException("Key cannot be null or empty.", nameof(key));
+            }
+
+            // Add the key-value pair as a KeyValuePair object to the list box
+            listBox.Items.Add(new KeyValuePair<string, int>(key, value));
+
+            // Set the DisplayMember and ValueMember properties if they are not already set
+            if (string.IsNullOrEmpty(listBox.DisplayMember))
+            {
+                listBox.DisplayMember = "Key";
+            }
+
+            if (string.IsNullOrEmpty(listBox.ValueMember))
+            {
+                listBox.ValueMember = "Value";
+            }
+        }
+
+        /// <summary>
         /// Creates and adds a <see cref="CheckedListBox"/> control to the specified form.
         /// </summary>
         /// <param name="form">The parent form to which the <see cref="CheckedListBox"/> will be added.</param>
@@ -337,6 +377,46 @@ namespace GoatForms
             }
 
             checkedListBox.Items.Add(itemText);
+        }
+
+        /// <summary>
+        /// Creates and adds a key-value pair item to the specified checked list box.
+        /// </summary>
+        /// <param name="checkedListBox">The parent checked list box to which the checked list box item will be added.</param>
+        /// <param name="key">The display text for the checked list box item.</param>
+        /// <param name="value">The value associated with the checked list box item.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="checkedListBox"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/> or empty.</exception>
+        /// <remarks>
+        /// This method creates a checked list box item with the specified properties and adds it to the specified checked list box. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// If the key is <see langword="null"/> or empty, an <see cref="ArgumentException"/> will be thrown. 
+        /// </remarks>
+        public static void AddCheckedListBoxItem(CheckedListBox checkedListBox, string key, int value)
+        {
+            if (checkedListBox == null)
+            {
+                throw new ArgumentNullException(nameof(checkedListBox));
+            }
+
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new ArgumentException("Key cannot be null or empty.", nameof(key));
+            }
+
+            // Add the key-value pair as a KeyValuePair object to the checked list box
+            checkedListBox.Items.Add(new KeyValuePair<string, int>(key, value));
+
+            // Set the DisplayMember and ValueMember properties if they are not already set
+            if (string.IsNullOrEmpty(checkedListBox.DisplayMember))
+            {
+                checkedListBox.DisplayMember = "Key";
+            }
+
+            if (string.IsNullOrEmpty(checkedListBox.ValueMember))
+            {
+                checkedListBox.ValueMember = "Value";
+            }
         }
 
         /// <summary>
@@ -503,6 +583,11 @@ namespace GoatForms
         /// <param name="value">The value associated with the combo box item.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="comboBox"/> is <see langword="null"/>.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="key"/> is <see langword="null"/> or empty.</exception>
+        /// <remarks>
+        /// This method creates a combo box item with the specified properties and adds it to the specified combo box. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// If the key is <see langword="null"/> or empty, an <see cref="ArgumentException"/> will be thrown. 
+        /// </remarks>
         public static void AddComboBoxItem(ComboBox comboBox, string key, int value)
         {
             if (comboBox == null)

@@ -4,6 +4,10 @@ This document outlines the changes made between versions of the GoatForms librar
 
 ## V1.2.5
 
+## New Features
+
+The `ControlFactory` class now has overload methods to add key/value pairs to list boxes and checked list boxes.
+
 ### Updated Features
 
 When using the `ShowInputBox` method from `UIUtils`, you can now specify that the input box is a password input. The new `isPasswordInput` parameter can be set to `true` or `false` and is `false` by default.
