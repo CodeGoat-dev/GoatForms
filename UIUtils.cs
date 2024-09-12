@@ -205,13 +205,14 @@ namespace GoatForms
         /// <param name="prompt">The prompt text to display in the input box.</param>
         /// <param name="title">The title of the input box.</param>
         /// <param name="defaultValue">The default text to display in the input box.</param>
+        /// <param name="isPasswordInput">Whether the input box is a password box.</param>
         /// <returns>The user's input, or <see langword="null"/> if the user canceled.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="prompt"/> is <see langword="null"/>.</exception>
         /// <remarks>
         /// Displays a simple input box for user input with the specified prompt and title. 
         /// If the prompt is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown.
         /// </remarks>
-        public static string ShowInputBox(string prompt, string title = "Input", string defaultValue = "")
+        public static string ShowInputBox(string prompt, string title = "Input", string defaultValue = "", bool isPasswordInput = false)
         {
             if (prompt == null)
             {
@@ -230,6 +231,11 @@ namespace GoatForms
                 form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
                 form.AcceptButton = buttonOk;
                 form.CancelButton = buttonCancel;
+
+                if (isPasswordInput == true)
+                {
+                    textBox.PasswordChar = '*';
+                }
 
                 return form.ShowDialog() == DialogResult.OK ? textBox.Text : null;
             }

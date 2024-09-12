@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.5
+
+### Updated Features
+
+When using the `ShowInputBox` method from `UIUtils`, you can now specify that the input box is a password input. The new `isPasswordInput` parameter can be set to `true` or `false` and is `false` by default.
+
 ## V1.2.4
 
 ## New Features
