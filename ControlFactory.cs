@@ -258,6 +258,50 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Creates and adds a <see cref="ListBox"/> control to the specified form.
+        /// </summary>
+        /// <param name="form">The parent form to which the <see cref="ListBox"/> will be added.</param>
+        /// <param name="description">The description for the  <see cref="ListBox"/> control.</param>
+        /// <param name="contextMenu">The context menu for the  <see cref="ListBox"/> control.</param>
+        /// <param name="onSelectedIndexChanged">The selection changed <see chref="EventHandler"/> for the  <see cref="ListBox"/> control.</param>
+        /// <param name="styledControl">Whether the the <see cref="ListBox"/> control should be styled.</param>
+        /// <returns>A handle to the created <see cref="ListBox"/> control.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="form"/> is <see langword="null"/>.</exception>
+        /// <remarks>
+        /// This method creates a <see cref="ListBox"/> control with the specified properties and adds it to the specified form. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// </remarks>
+        public static ListBox AddListBox(BaseForm form, string description = null, ContextMenuStrip contextMenu = null, EventHandler onSelectedIndexChanged = null, bool styledControl = false)
+        {
+            if (form == null)
+            {
+                throw new ArgumentNullException(nameof(form));
+            }
+
+            ListBox listBox = new ListBox
+            {
+                AccessibleDescription = description,
+                Width = 200,
+                Height = 150,
+                TabStop = true
+            };
+
+            if (contextMenu != null)
+            {
+                listBox.ContextMenuStrip = contextMenu;
+            }
+
+            if (onSelectedIndexChanged != null)
+            {
+                listBox.SelectedIndexChanged += onSelectedIndexChanged;
+            }
+
+            form.AddControl(listBox, styledControl);
+
+            return listBox;
+        }
+
+        /// <summary>
         /// Creates and adds a list box item to the specified list box.
         /// </summary>
         /// <param name="listBox">The parent list box to which the list box item will be added.</param>

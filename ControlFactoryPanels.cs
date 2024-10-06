@@ -235,6 +235,50 @@ namespace GoatForms
         }
 
         /// <summary>
+        /// Creates and adds a <see cref="ListBox"/> control to the specified panel.
+        /// </summary>
+        /// <param name="panel">The parent panel to which the <see cref="ListBox"/> will be added.</param>
+        /// <param name="description">The description for the  <see cref="ListBox"/> control.</param>
+        /// <param name="contextMenu">The context menu for the  <see cref="ListBox"/> control.</param>
+        /// <param name="onSelectedIndexChanged">The selection changed <see chref="EventHandler"/> for the  <see cref="ListBox"/> control.</param>
+        /// <param name="styledControl">Whether the the <see cref="ListBox"/> control should be styled.</param>
+        /// <returns>A handle to the created <see cref="ListBox"/> control.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="groupBox"/> is <see langword="null"/>.</exception>
+        /// <remarks>
+        /// This method creates a <see cref="ListBox"/> control with the specified properties and adds it to the specified panel. 
+        /// If the parent control is <see langword="null"/>, an <see cref="ArgumentNullException"/> will be thrown. 
+        /// </remarks>
+        public static ListBox AddListBoxToPanel(Panel panel, string description = null, ContextMenuStrip contextMenu = null, EventHandler onSelectedIndexChanged = null, bool styledControl = false)
+        {
+            if (panel == null)
+            {
+                throw new ArgumentNullException(nameof(panel));
+            }
+
+            ListBox listBox = new ListBox
+            {
+                AccessibleDescription = description,
+                Width = 200,
+                Height = 150,
+                TabStop = true
+            };
+
+            if (contextMenu != null)
+            {
+                listBox.ContextMenuStrip = contextMenu;
+            }
+
+            if (onSelectedIndexChanged != null)
+            {
+                listBox.SelectedIndexChanged += onSelectedIndexChanged;
+            }
+
+            AddControlToPanel(panel, listBox, styledControl);
+
+            return listBox;
+        }
+
+        /// <summary>
         /// Creates and adds a <see cref="CheckedListBox"/> control to the specified panel.
         /// </summary>
         /// <param name="panel">The parent panel to which the <see cref="CheckedListBox"/> will be added.</param>
