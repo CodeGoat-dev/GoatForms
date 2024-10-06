@@ -2,6 +2,12 @@
 
 This document outlines the changes made between versions of the GoatForms library.
 
+## V1.2.6
+
+## New Features
+
+Overload methods have been added to create list boxes with context menu strips. This applies to list box controls added to forms, panels, tab pages and group boxes.
+
 ## V1.2.5
 
 ## New Features
