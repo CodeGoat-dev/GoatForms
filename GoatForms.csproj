@@ -15,12 +15,12 @@
     <Description>A collection of classes and methods to simplify the creation of Windows Forms</Description>
     <Company>Goat Technologies</Company>
     <Product>GoatForms Library</Product>
-    <Copyright>Copyright © 2024 Goat Technologies</Copyright>
+    <Copyright>Copyright © 2024-2025 Goat Technologies</Copyright>
     <AssemblyTitle>GoatForms Library</AssemblyTitle>
     <Authors>CodeGoat</Authors>
-    <AssemblyVersion>1.2.6.68</AssemblyVersion>
-    <FileVersion>1.2.6.68</FileVersion>
-    <Version>1.2.6</Version>
+    <AssemblyVersion>1.2.7.70</AssemblyVersion>
+    <FileVersion>1.2.7.70</FileVersion>
+    <Version>1.2.7</Version>
     <PackageTags>Windows Forms Utility Library GUI UI UX Blind Visually Impaired</PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/CodeGoat-dev/GoatForms</RepositoryUrl>
